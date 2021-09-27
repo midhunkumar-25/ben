@@ -4,22 +4,15 @@ import {useState} from 'react';
 function App() {
   const [board, setboard] = useState(["","","","","","","","",""])
   const [turn, setturn] = useState("X")
-  const [count, setcount] = useState(1)
   const changeturn =(index)=>{
     if(turn === "X")
     {
-      setcount(prevcount => prevcount+1)
-      if(count==9)
-        {
-          alert(`draw !`)
-          setboard(["","","","","","","","",""])
-          setcount(1)
-          
-          
-          
-        }
-      board[index]="X"
-      setboard(board)
+      if( board[index]==""){
+        board[index]="X"
+        setboard(board)
+        setturn("O")
+      }
+      
       let wincom=[
         [0,1,2],
         [3,4,5],
@@ -38,25 +31,24 @@ function App() {
         if(board[p1] !="" && board[p2] !="" && board[p3] !="" && board[p1]==board[p2] && board[p3]==board[p2] && board[p1]==board[p3] ){
           alert(`player ${turn} Won!`)
           setboard(["","","","","","","","",""])
-          setcount(1)
           break
         }
       }
-      setturn("O")
+      if(board[0] !="" && board[1] !="" && board[2] !="" && board[3] !="" && board[4] !="" && board[5] !="" && 
+      board[6] !="" && board[7] !="" && board[8] !="" )
+        {
+          alert(`draw !`)
+          setboard(["","","","","","","","",""])
+        }
+      
 
     }
     else{
-      setcount(prevcount => prevcount+1)
-      if(count==9)
-        {
-          alert(`draw !`)
-          setboard(["","","","","","","","",""])
-          setcount(1)
-          
-          
-        }
-      board[index]="O"
-      setboard(board)
+      if( board[index]==""){
+        board[index]="O"
+        setboard(board)
+        setturn("X")
+      }
       let wincom=[
         [0,1,2],
         [3,4,5],
@@ -75,11 +67,15 @@ function App() {
         if(board[p1] !="" && board[p2] !="" && board[p3] !="" && board[p1]==board[p2] && board[p3]==board[p2] && board[p1]==board[p3] ){
           alert(`player ${turn} Won!`)
           setboard(["","","","","","","","",""])
-          setcount(1)
           break
         }
       }
-      setturn("X")
+      if(board[0] !="" && board[1] !="" && board[2] !="" && board[3] !="" && board[4] !="" && board[5] !="" && 
+      board[6] !="" && board[7] !="" && board[8] !="" )
+        {
+          alert(`draw !`)
+          setboard(["","","","","","","","",""])
+        }
     }
     
   }

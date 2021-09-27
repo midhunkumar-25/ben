@@ -26,12 +26,13 @@ code {
   width: 10rem;
   margin: auto;
   border: 2px solid;
-}
-
-.square:hover{
-  background-color: rgb(255, 253, 253);
   cursor: pointer;
 }
+
+/*.square:hover{
+  background-color: rgb(255, 253, 253);
+  cursor: pointer;
+}*/
 
 .symbol{
   font-size: 3rem;
