@@ -41,16 +41,18 @@ function App() {
         let p3=com[2]
         if(board[p1] !="" && board[p2] !="" && board[p3] !="" && board[p1]==board[p2] && board[p3]==board[p2] && board[p1]==board[p3] ){
           //alert(`player ${turn} Won!`)
+          console.log("wins")
           setOpen(true)
           setMessage(`player ${turn} Won!`)
           setboard(["","","","","","","","",""])
-          break
+          return
         }
       }
       if(board[0] !="" && board[1] !="" && board[2] !="" && board[3] !="" && board[4] !="" && board[5] !="" && 
       board[6] !="" && board[7] !="" && board[8] !="" )
         {
           //alert(`draw !`)
+          
           setOpen(true)
           setMessage("draw !")
           setboard(["","","","","","","","",""])
@@ -81,10 +83,11 @@ function App() {
         let p3=com[2]
         if(board[p1] !="" && board[p2] !="" && board[p3] !="" && board[p1]==board[p2] && board[p3]==board[p2] && board[p1]==board[p3] ){
           //alert(`player ${turn} Won!`)
+          console.log("wins")
           setOpen(true)
           setMessage(`player ${turn} Won!`)
           setboard(["","","","","","","","",""])
-          break
+          return
         }
       }
       if(board[0] !="" && board[1] !="" && board[2] !="" && board[3] !="" && board[4] !="" && board[5] !="" && 
