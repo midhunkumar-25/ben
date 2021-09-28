@@ -1,9 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 function App() {
   const [board, setboard] = useState(["","","","","","","","",""])
   const [turn, setturn] = useState("X")
+  const [open, setOpen] = useState(false)
+  const [message, setMessage] = useState("")
+  const handleClose = () => {
+    setOpen(false);
+  };
   const changeturn =(index)=>{
     if(turn === "X")
     {
@@ -29,7 +40,9 @@ function App() {
         let p2=com[1]
         let p3=com[2]
         if(board[p1] !="" && board[p2] !="" && board[p3] !="" && board[p1]==board[p2] && board[p3]==board[p2] && board[p1]==board[p3] ){
-          alert(`player ${turn} Won!`)
+          //alert(`player ${turn} Won!`)
+          setOpen(true)
+          setMessage(`player ${turn} Won!`)
           setboard(["","","","","","","","",""])
           break
         }
@@ -37,7 +50,9 @@ function App() {
       if(board[0] !="" && board[1] !="" && board[2] !="" && board[3] !="" && board[4] !="" && board[5] !="" && 
       board[6] !="" && board[7] !="" && board[8] !="" )
         {
-          alert(`draw !`)
+          //alert(`draw !`)
+          setOpen(true)
+          setMessage("draw !")
           setboard(["","","","","","","","",""])
         }
       
@@ -65,7 +80,9 @@ function App() {
         let p2=com[1]
         let p3=com[2]
         if(board[p1] !="" && board[p2] !="" && board[p3] !="" && board[p1]==board[p2] && board[p3]==board[p2] && board[p1]==board[p3] ){
-          alert(`player ${turn} Won!`)
+          //alert(`player ${turn} Won!`)
+          setOpen(true)
+          setMessage(`player ${turn} Won!`)
           setboard(["","","","","","","","",""])
           break
         }
@@ -73,7 +90,9 @@ function App() {
       if(board[0] !="" && board[1] !="" && board[2] !="" && board[3] !="" && board[4] !="" && board[5] !="" && 
       board[6] !="" && board[7] !="" && board[8] !="" )
         {
-          alert(`draw !`)
+          //alert(`draw !`)
+          setOpen(true)
+          setMessage("draw !")
           setboard(["","","","","","","","",""])
         }
     }
@@ -82,14 +101,33 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Result"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {message}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>ok</Button>
+        </DialogActions>
+        </Dialog>
         <div className="board">
           {
+            
             board.map((box,index) => {
               return (
-                  <div onClick={()=>changeturn(index)} className="square">
-                    <div className="symbol">
+                  <div onClick={()=>changeturn(index)} className="square" >
+                    <div className="symbol" >
                     {box}</div>
-                    </div>
+                  </div>
               )
             })
           }
